@@ -7,7 +7,7 @@ const db = mysql.createConnection({
   database: process.env.MYSQLDATABASE,
   port: process.env.MYSQLPORT,
   ssl: {
-    rejectUnauthorized: true
+    rejectUnauthorized: false   
   }
 });
 
@@ -16,7 +16,7 @@ db.connect((err) => {
     console.error("DB connection failed:", err);
     return;
   }
-  console.log("MySQL connected");
+  console.log("MySQL connected successfully");
 });
 
 export default db;
