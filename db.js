@@ -14,12 +14,16 @@ const db = mysql.createPool({
   queueLimit: 0
 });
 
-db.connect((err) => {
-  if (err) {
+const promisePool = db.promise();
+
+(async () => {
+  try {
+    const connection = await promisePool.getConnection();
+    console.log("MySQL connected successfully ✅");
+    connection.release();
+  } catch (err) {
     console.error("DB connection failed:", err);
-    return;
   }
-  console.log("MySQL connected successfully");
-});
+})();
 
 export default db;
