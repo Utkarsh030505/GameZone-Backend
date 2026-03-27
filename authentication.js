@@ -20,6 +20,7 @@ export const login = (req, res) => {
   const sql = "SELECT * FROM users WHERE email = ?";
   db.query(sql, [email], (err, result) => {
     if (err) {
+      console.error("ERROR:", err);
       return res.status(500).json({ message: "Server error" });
     }
 
